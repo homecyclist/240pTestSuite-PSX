@@ -68,3 +68,5 @@
 #include"patterns/linearityw256224pal.c"
 #include"patterns/sharpnessw256224.c"
 #include"patterns/sharpnessw256240.c"
+#include"patterns/monoscope224.c"
+#include"patterns/monoscope240.c"

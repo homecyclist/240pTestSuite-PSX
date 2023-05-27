@@ -25,6 +25,7 @@ void smpte_color_bars();
 void color_bars_with_gray_reference();
 void color_bleed_check();
 void grid();
+void monoscope();
 void linearity();
 void gray_ramp();
 void white_and_rgb_screens();

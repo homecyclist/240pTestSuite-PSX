@@ -402,6 +402,94 @@ void grid()
 	}
 }
 
+void monoscope()
+{
+	char whitebackground = 0;
+	char gridsel = 0;
+	int frame_time = 90;
+
+	GsImage image;
+	GsSprite monoscope224, monoscope240;
+
+	if (x_res == 256) {
+		upload_sprite(&image, &sprite224, &gridw256224_array);
+		upload_sprite(&image, &sprite240, &gridw256240_array);
+		if (GsScreenM == VMODE_PAL)
+			upload_sprite(&image, &gridw256256_array);
+	} else {
+		upload_sprite(&image, &sprite224, &grid224_array);
+		upload_sprite(&image, &sprite240, &grid240_array);
+		if (GsScreenM == VMODE_PAL)
+			upload_sprite(&image, &grid256_array);
+	}
+
+	GsRectangle background;
+	background.r = background.g = background.b = 66;
+	background.x = background.y = 0;
+	background.w = x_res; background.h = y_res;
+	background.attribute = 0;
+
+	while (1) {
+		if (display_is_old) {
+		set_screen(x_res, 240, VMODE, interlaced);
+		GsSortCls(0, 0, 0);
+
+		switch (input_tap()) {
+		case PAD_TRIANGLE:
+			return;
+		case PAD_START:
+			draw_help(HELP_GRID);
+			break;
+		case PAD_CROSS:
+			gridsel++;
+			if (gridsel > (y_res % 224 / 16))
+				gridsel = 0;
+			frame_time = 90;
+			break;
+		case PAD_SQUARE:
+			whitebackground = !whitebackground;
+			break;
+		}
+
+		if (whitebackground)
+			GsSortRectangle(&background);
+
+		switch (gridsel) {
+		case 0:
+			sprite224.y = background.y = 8;
+			sprite224.h = background.h = 224;
+			sprite224.w = 256;
+			sprite224.x = 0;
+			sprite224.tpage = 5;
+			GsSortSprite(&sprite224);
+			sprite224.w = 64;
+			sprite224.x = 256;
+			sprite224.tpage = 6;
+			GsSortSprite(&sprite224);
+			break;
+		case 1:
+			sprite240.y = background.y = 0;
+			sprite240.h = background.h = 240;
+			sprite240.w = 256;
+			sprite240.x = 0;
+			sprite240.tpage = 7;
+			GsSortSprite(&sprite240);
+			sprite240.w = 64;
+			sprite240.x = 256;
+			sprite240.tpage = 8;
+			GsSortSprite(&sprite240);
+			break;
+		}
+		if (frame_time > 0) {
+			draw_font(1, x_res == 256 ? 192 : 230, 20, 0, 255, 0, "%dx%d", x_res, (224 + gridsel * 16));
+	       		frame_time--;
+		}
+
+		draw_list();
+		}
+	}
+}
+
 void linearity()
 {
 	char show_grid = 0;

@@ -375,17 +375,19 @@ int main()
 					break;
 				case 6: grid();
 					break;
-				case 7: linearity();
+				case 7: monoscope();
 					break;
-				case 8: gray_ramp();
+				case 8: linearity();
 					break;
-				case 9: white_and_rgb_screens();
+				case 9: gray_ramp();
 					break;
-				case 10: sharpness();
+				case 10: white_and_rgb_screens();
+					break;
+				case 11: sharpness();
 					 break;
-				case 11: convergence();
+				case 12: convergence();
 					 break;
-				case 12: overscan();
+				case 13: overscan();
 					 break;
 				}
 			}
@@ -424,12 +426,13 @@ int main()
 			draw_menu_font(1, cnt, 4, x, 71, "Color Bars with Gray Scale");
 			draw_menu_font(1, cnt, 5, x, 79, "Color Bleed Check");
 			draw_menu_font(1, cnt, 6, x, 88, "Grid");
-			draw_menu_font(1, cnt, 7, x, 96, "Linearity");
-			draw_menu_font(1, cnt, 8, x, 104, "Gray Ramp");
-			draw_menu_font(1, cnt, 9, x, 112, "White & RGB Screens");
-			draw_menu_font(1, cnt, 10, x, 120, "Sharpness");
-			draw_menu_font(1, cnt, 11, x, 128, "Convergence & Focus");
-			draw_menu_font(1, cnt, 12, x, 136, "Overscan");
+			draw_menu_font(1, cnt, 7, x, 96, "Monoscope");
+			draw_menu_font(1, cnt, 8, x, 104, "Linearity");
+			draw_menu_font(1, cnt, 9, x, 112, "Gray Ramp");
+			draw_menu_font(1, cnt, 10, x, 120, "White & RGB Screens");
+			draw_menu_font(1, cnt, 11, x, 128, "Sharpness");
+			draw_menu_font(1, cnt, 12, x, 136, "Convergence & Focus");
+			draw_menu_font(1, cnt, 13, x, 144, "Overscan");
 		}
 
 
